@@ -1,3 +1,4 @@
+#include <Arduino.h>
 
 #include "error_hooks.h"
 
@@ -17,7 +18,7 @@ void rtosFatalError(void)
   
   while (1)
   {
-    errorBlink(3);
+    // errorBlink(3);
   }
 }
 
@@ -29,7 +30,7 @@ void vApplicationMallocFailedHook(void)
   
   while (1)
   {
-    errorBlink(1);
+    // errorBlink(1);
   }
 }
 
@@ -42,7 +43,7 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask, char *pcTaskName )
   
   while (1)
   {
-    errorBlink(2);
+    // errorBlink(2);
   }
 }
 
@@ -58,6 +59,7 @@ void vSetErrorLed(uint8_t pin, uint8_t activeState)
 // blink an error code out the default led when the rtos has crashed
 void errorBlink(int errorNumber)
 {
+  // TODO: Use the Buzzer instead of a LED.
   pinMode(ErrorLed_Pin, OUTPUT); 
   
   for(int x=0; x<errorNumber; ++x)
